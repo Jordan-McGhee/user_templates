@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Templates</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div id="wrapper">
+        <h1>All the Users</h1>
+        
+        <table>
+            <thead>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Age</th>
+            </thead>
+            <tbody>
+                {% for user in all_users %}
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.first_name}}</td>
+                    <td>{{user.last_name}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.age}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+
+        </table>
+
+        <h1>Add a User</h1>
+        <form action="/create" method="POST">
+            {% csrf_token %}
+
+            <div class="input">
+                <label for="first_name">First Name:</label>
+                <input name="first_name" type="text">
+            </div>
+
+            <div class="input">
+                <label for="last_name">Last Name</label>
+                <input name="last_name" type="text">
+            </div>
+
+            <div class="input">
+                <label for="email">Email</label>
+                <input name="email" type="text">
+            </div>
+
+            <div class="input">
+                <label for="age">Age</label>
+                <input name="age" type="number">
+            </div>
+            <input type="submit" id="button">
+        </form>
+    </div>
+</body>
+</html>
